@@ -14,6 +14,5 @@ class SearchController < ApplicationController
       definition['definitions']
     end
     @definitions = [initial_defs, sub_defs].flatten
-    binding.pry
   end
 end

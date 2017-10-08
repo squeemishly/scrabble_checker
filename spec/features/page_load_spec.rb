@@ -17,7 +17,7 @@ RSpec.describe('a use can access the welcome page') do
       # Then I should see a confirmation that "best" exists
       expect(page).to have_content "best exists"
       # and I should see a definition for best
-      expect(page).to have_content "Definition: "
+      expect(page).to have_content "Definitions: "
     end
   end
 end
