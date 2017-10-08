@@ -25,6 +25,6 @@ class Search < ActiveRecord::Base
   end
 
   def self.build_defs(res)
-    [find_primary_defs(res), find_sub_defs(res)].flatten
+    [find_primary_defs(res), find_sub_defs(res)].flatten.compact
   end
 end
