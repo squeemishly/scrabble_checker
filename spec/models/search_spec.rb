@@ -8,17 +8,16 @@ RSpec.describe Search do
               [{"lexicalEntries"=>
                  [{"entries"=>
                     [{"senses"=>
-                       [{"definitions"=>
-                          ["a tool with a heavy metal head mounted at right angles at the end of a handle, used for jobs such as breaking things and driving in nails."],
+                       [{"definitions"=> ["a tool with a heavy metal head mounted at right angles at the end of a handle, used for jobs such as breaking things and driving in nails."],
                          "subsenses"=>
                           [{"definitions"=>["a machine with a metal block for giving a heavy blow to something."]},
                            {"definitions"=>["an auctioneer's gavel, tapped to indicate a sale."], "id"=>"m_en_gbus0447670.011"},
-                           {"definitions"=>
-                             ["a part of a mechanism that hits another part to make it work, such as one exploding the charge in a gun or one striking the strings of a piano."]}]},
+                           {"definitions"=> ["a part of a mechanism that hits another part to make it work, such as one exploding the charge in a gun or one striking the strings of a piano."]}]},
                         {"definitions"=>["a metal ball of about 7 kg attached to a wire for throwing in an athletic contest."],
                          "subsenses"=>
-                          [{"definitions"=>["the sport of throwing a hammer."]}]},
-                        ]}]},
+                          [{"definitions"=>["the sport of throwing a hammer."]}]}
+                        ]}
+                      ]},
                   {"entries"=>
                     [{"senses"=>
                        [{"definitions"=>["hit or beat (something) repeatedly with a hammer or similar object"],
@@ -37,11 +36,14 @@ RSpec.describe Search do
                        [{"definitions"=>["a British film company founded in 1948, known especially for its horror films."],
                          "subsenses"=>
                           [{"definitions"=>["a film produced by Hammer Film Productions"]}]}],
-                      }]}]}]}
+                    }]
+                  }]
+                }]
+              }
   end
 
   context '.find_word' do
-    it 'returns an array of definitions' do
+    it 'returns a list of definitions' do
       VCR.use_cassette('Search_find_word') do
         defs = Search.find_word('hammer')
         expect(defs).to be_a Array
@@ -51,11 +53,23 @@ RSpec.describe Search do
   end
 
   context '.build_defs' do
-    it 'returns an array of definitions' do
+    it 'returns a list of the primary definitions' do
       defs = Search.build_defs(res)
       expect(defs).to be_a Array
       expect(defs.first).to be_a String
       expect(defs.count).to eq 7
     end
   end
+
+  context '.find_defs' do
+    it 'finds and returns the primary definitions' do
+      entry = res["results"][0]["lexicalEntries"][0]["entries"][0]
+      defs = Search.find_defs(entry, [])
+      expect(defs).to be_a Array
+      expect(defs.first).to be_a Array
+      expect(defs.first.first).to be_a String
+      expect(defs.count).to eq 2
+    end
+  end
+
 end
