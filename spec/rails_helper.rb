@@ -78,5 +78,5 @@ RSpec.configure do |config|
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
-  config.filter_gems_from_backtrace("railties-5.1.4", "rack-2.0.3", "rack-test-0.7.0", "capybara-2.15.3")
+  config.filter_gems_from_backtrace("railties-5.1.4", "rack-2.0.3", "rack-test-0.7.0", "capybara-2.15.3", "faraday-0.12.2", "webmock-3.0.1", "vcr-3.0.3")
 end
