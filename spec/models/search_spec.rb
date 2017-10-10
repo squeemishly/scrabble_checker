@@ -61,6 +61,17 @@ RSpec.describe Search do
     end
   end
 
+  context '.find_entries' do
+    it 'finds and returns a list of lists of definitions' do
+      lex_entry = res["results"][0]["lexicalEntries"][0]
+      defs = Search.find_entries(lex_entry, [])
+      expect(defs).to be_a Array
+      expect(defs.first).to be_a Array
+      expect(defs.first.first).to be_a String
+      expect(defs.count).to eq 2
+    end
+  end
+
   context '.find_defs' do
     it 'finds and returns the primary definitions' do
       entry = res["results"][0]["lexicalEntries"][0]["entries"][0]
@@ -71,5 +82,4 @@ RSpec.describe Search do
       expect(defs.count).to eq 2
     end
   end
-
 end
