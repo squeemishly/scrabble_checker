@@ -7,17 +7,15 @@ class Search
 
   private
 
-  def self.find_primary_defs(res)
-    res['results'].first['lexicalEntries'].first['entries'].first['senses'].first['definitions']
-  end
-
-  def self.find_sub_defs(res)
-    res['results'].first['lexicalEntries'].first['entries'].first['senses'].first['subsenses'].map do |definition|
-      definition['definitions']
-    end
-  end
-
   def self.build_defs(res)
-    [find_primary_defs(res), find_sub_defs(res)].flatten.compact
+    arr = []
+    res['results'].first['lexicalEntries'].each do |lex_entry|
+      lex_entry["entries"].each do |entry|
+        entry["senses"].each do |sense|
+          arr << sense["definitions"]
+        end
+      end
+    end
+    arr.flatten.compact
   end
 end
