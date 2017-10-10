@@ -1,10 +1,22 @@
 class OedService
-  def self.find_word(word)
-    conn = Faraday.new(url: "https://od-api.oxforddictionaries.com:443")
-    self.oed_call(conn, word)
+  attr_reader :url
+
+  def initialize
+    @url = "https://od-api.oxforddictionaries.com:443"
   end
 
-  def self.oed_call(conn, word)
+  def self.find_word(word)
+    new.find_word(word)
+  end
+
+  def find_word(word)
+    conn = Faraday.new(url: url)
+    oed_call(conn, word)
+  end
+
+  private
+
+  def oed_call(conn, word)
     conn.get "/api/v1/entries/en/#{word}",
               {},
               {
