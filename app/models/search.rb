@@ -8,24 +8,24 @@ class Search
   private
 
   def self.build_defs(res)
-    arr = []
-    res['results'].first['lexicalEntries'].each do |lex_entry|
-      self.find_entries(lex_entry, arr)
-    end
-    arr.flatten.compact
+    self.parse_results(res).flatten.compact
   end
 
-  def self.find_entries(lex_entry, arr)
-    lex_entry["entries"].each do |entry|
-      self.find_defs(entry, arr)
+  def self.parse_results(res)
+    res['results'].first['lexicalEntries'].map do |lex_entry|
+      self.parse_entries(lex_entry)
     end
-    arr
   end
 
-  def self.find_defs(entry, arr)
-    entry["senses"].each do |sense|
-      arr << sense["definitions"]
+  def self.parse_entries(lex_entry)
+    lex_entry["entries"].map do |entry|
+      self.find_defs(entry)
     end
-    arr
+  end
+
+  def self.find_defs(entry)
+    entry["senses"].map do |sense|
+      sense["definitions"]
+    end
   end
 end
