@@ -1,12 +1,12 @@
 class Search
   def self.find_word(word)
     response = OedService.find_word(word)
-    self.verify_response_status(response)
+    self.determine_response_status(response)
   end
 
   private
 
-  def self.verify_response_status(response)
+  def self.determine_response_status(response)
     if response.status == 404
       nil
     elsif response.status == 200
