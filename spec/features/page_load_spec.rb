@@ -26,6 +26,7 @@ RSpec.describe('a use can access the welcome page') do
       visit '/'
       fill_in :search, with: 'arstoien'
       click_on "Submit"
+      expect(page).to_not have_content 'arstoien exists'
       expect(page).to have_content 'arstoien does not exist'
     end
   end
