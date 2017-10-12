@@ -1,7 +1,9 @@
 <nav>
-  Search for a word:
-  <%= form_tag('/search?word=', method: :get) do %>
+  <div class="search-prompt">Search for a word:</div>
+  <div class="search-form">
+    <%= form_tag('/search?word=', method: :get) do %>
     <%= text_field_tag :search %>
     <%= submit_tag 'Submit' %>
-  <% end %>
+    <% end %>
+  </div>
 </nav>
