@@ -9,13 +9,7 @@
   </head>
 
   <body>
-    <nav>
-      Search for a word: 
-      <%= form_tag('/search?word=', method: :get) do %>
-        <%= text_field_tag :search %>
-        <%= submit_tag 'Submit' %>
-      <% end %>
-    </nav>
+    <%= render "layouts/navbar" %>
     <%= yield %>
   </body>
 </html>
