@@ -1,8 +1,12 @@
-<h1><%= @word %> exists!</h1>
+<% if @definitions %>
+  <h1><%= @word %> exists!</h1>
 
-<h3>Definitions: </h3>
-<ol>
-  <% @definitions.each do |definition| %>
-    <li><%= definition %></li>
-  <% end %>
-</ol>
+  <h3>Definitions: </h3>
+  <ol>
+    <% @definitions.each do |definition| %>
+      <li><%= definition %></li>
+    <% end %>
+  </ol>
+<% else %>
+  <h1><%= @word %> does not exist.</h1>
+<% end %>

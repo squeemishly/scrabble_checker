@@ -92,4 +92,25 @@ RSpec.describe Search do
       expect(defs.count).to eq 2
     end
   end
+
+  context '.determine_response_status' do
+    it 'returns definitions for a response status of 200' do
+      VCR.use_cassette 'determine_response_status_200' do
+        response = OedService.find_word("word")
+        defs = Search.determine_response_status(response)
+        expect(response.status).to eq 200
+        expect(defs).to be_a Array
+        expect(defs.first).to be_a String
+      end
+    end
+
+    it 'returns nil for a response status of 404' do
+      VCR.use_cassette 'determine_response_status_404' do
+        response = OedService.find_word("arstoien")
+        defs = Search.determine_response_status(response)
+        expect(response.status).to eq 404
+        expect(defs).to eq nil
+      end
+    end
+  end
 end
