@@ -105,7 +105,12 @@ RSpec.describe Search do
     end
 
     it 'returns nil for a response status of 404' do
-
+      VCR.use_cassette 'determine_response_status_404' do
+        response = OedService.find_word("arstoien")
+        defs = Search.determine_response_status(response)
+        expect(response.status).to eq 404
+        expect(defs).to eq nil
+      end
     end
   end
 end
