@@ -1,5 +1,7 @@
+@import 'variables';
+
 nav {
-  background-color: #7256af;
+  background-color: $primary-color;
   padding: 10px;
   border-radius: 5px;
   display: flex;
