@@ -1,8 +1,12 @@
 class Search
   def self.find_word(word)
     response = OedService.find_word(word)
-    res = JSON.parse(response.body)
-    self.build_defs(res)
+    if response.status == 404
+      nil
+    elsif response.status == 200
+      res = JSON.parse(response.body)
+      self.build_defs(res)
+    end
   end
 
   private
