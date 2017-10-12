@@ -5,9 +5,12 @@ nav {
   padding: 10px;
   border-radius: 5px;
   display: flex;
+  align-items: center;
 
   .search-prompt {
     padding-right: 10px;
-    color: white;
+    color: $text-color;
+    font-weight: bold;
+    font-size: 1.5em;
   }
 }
