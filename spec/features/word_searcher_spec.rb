@@ -6,7 +6,7 @@ RSpec.describe 'a user can see waht words are available from their tiles' do
       visit '/'
       # As a user
       # When I select 'Word Searcher' from the menu
-      click_on 'Word Searcher'
+      click_on 'Word Finder'
       expect(page).to have_content 'See All Available Words'
       # Then I should see 'See All Available Words' next to the search box
       # And when I click in the search box
