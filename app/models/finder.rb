@@ -4,8 +4,8 @@ class Finder
   end
 
   def self.anagramify(tiles)
-    self.make_list(tiles).flatten(1).map do |letters|
-      response = Faraday.get("http://www.anagramica.com/best/#{letters.join('')}")
+    self.make_list(tiles).map do |letters|
+      response = AnagramicaService.get_words(letters.join(''))
       JSON.parse(response.body)["best"]
     end.flatten
   end
@@ -18,6 +18,6 @@ class Finder
       tiles_combined << tiles_list.combination(i).to_a
       i += 1
     end
-    tiles_combined
+    tiles_combined.flatten(1)
   end
 end
