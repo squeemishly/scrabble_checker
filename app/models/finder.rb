@@ -24,6 +24,6 @@ class Finder
       tiles_combined << tiles_list.combination(i).to_a
       i += 1
     end
-    tiles_combined.flatten(1)
+    tiles_combined.flatten(1).uniq
   end
 end
