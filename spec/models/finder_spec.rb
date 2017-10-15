@@ -20,8 +20,8 @@ RSpec.describe Finder do
     it 'returns all 2 and 3 letter anagrams for 3 tiles' do
       VCR.use_cassette 'finder_3_tiles' do
         words = Finder.all_words('not')
-        expect(words.count).to eq 4
-        expect(words).to eq ['no', 'on', 'not', 'ton']
+        expect(words.count).to eq 5
+        expect(words).to eq ['no', 'on', 'to', 'not', 'ton']
       end
     end
   end
