@@ -28,5 +28,13 @@ RSpec.describe Finder do
         expect(words).to eq ["as", "at", "rs", "ts", "as", "art", "rat", "tar", "sat", "rs", "arts", "rats", "star", "tars", "tsar"]
       end
     end
+
+    it 'only returns a single instance of each word' do
+      VCR.use_cassette 'finder_remove_duplicates' do
+        words = Finder.all_words('kitty')
+        expect(words.count).to eq 5
+        expect(words).to eq ['it', 'ti', 'kit', 'tit', 'kitty']
+      end
+    end
   end
 end
