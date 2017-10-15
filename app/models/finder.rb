@@ -1,5 +1,9 @@
 class Finder
   def self.all_words(tiles)
+    self.verify_word_length(tiles).uniq
+  end
+
+  def self.verify_word_length(tiles)
     self.anagramify(tiles).keep_if { |word| word.length > 1 }
   end
 
