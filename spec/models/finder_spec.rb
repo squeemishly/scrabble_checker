@@ -24,8 +24,8 @@ RSpec.describe Finder do
     it 'returns all anagrams from 4 tiles' do
       VCR.use_cassette 'finder_4_tiles' do
         words = Finder.all_words('arst')
-        expect(words.count).to eq 15
-        expect(words).to eq ["as", "at", "rs", "ts", "as", "art", "rat", "tar", "sat", "rs", "arts", "rats", "star", "tars", "tsar"]
+        expect(words.count).to eq 13
+        expect(words).to eq ["as", "at", "rs", "ts", "art", "rat", "tar", "sat", "arts", "rats", "star", "tars", "tsar"]
       end
     end
 
