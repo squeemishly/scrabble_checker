@@ -1,3 +1,12 @@
+<div class="tiles-prompt">See All Available Words:</div>
+<div class="tiles-form">
+  <%= form_tag('/finder?tiles=', method: :get) do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag 'Submit' %>
+  <% end %>
+</div>
+
+
 You can make <%= @words.length %> words from your tiles:
 
 <ul>
