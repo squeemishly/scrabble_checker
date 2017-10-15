@@ -37,4 +37,36 @@ RSpec.describe Finder do
       end
     end
   end
+
+  context '.verify_word_length' do
+    it 'only keeps words that have more than 1 character' do
+      VCR.use_cassette 'finder_verify_word_length' do
+        words = Finder.verify_word_length('arst')
+        expect(words).to be_a Array
+        expect(words.all? { |word| word.length > 1 }).to be true
+      end
+    end
+  end
+
+  context '.anagramify' do
+    it 'makes a list of words from tiles' do
+      VCR.use_cassette 'finder_anagramify' do
+        words = Finder.anagramify('arst')
+        expect(words).to be_a Array
+        expect(words.first).to be_a String
+        expect(words.length).to eq 17
+        expect(words).to eq ["a", "as", "at", "rs", "r", "ts", "as", "art", "rat", "tar", "sat", "rs", "arts", "rats", "star", "tars", "tsar"]
+      end
+    end
+  end
+
+  context '.make_list' do
+    it 'makes a list of tile combinations with 2 tiles' do
+      list = Finder.make_list('ar')
+      expect(list).to be_a Array
+      expect(list.first).to be_a Array
+      expect(list.count).to eq 1
+      expect(list).to eq [['a', 'r']]
+    end
+  end
 end
