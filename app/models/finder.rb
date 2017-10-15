@@ -4,7 +4,7 @@ class Finder
       []
     else
       response = Faraday.get("http://www.anagramica.com/best/#{tiles}")
-      binding.pry
+      JSON.parse(response.body)["best"]
     end
   end
 end
