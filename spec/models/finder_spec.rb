@@ -68,5 +68,13 @@ RSpec.describe Finder do
       expect(list.count).to eq 1
       expect(list).to eq [['a', 'r']]
     end
+
+    it 'makes a list of tile combinations with many tiles' do
+      list = Finder.make_list('arst')
+      expect(list).to be_a Array
+      expect(list.first).to be_a Array
+      expect(list.count).to eq 11
+      expect(list).to eq [["a", "r"], ["a", "s"], ["a", "t"], ["r", "s"], ["r", "t"], ["s", "t"], ["a", "r", "s"], ["a", "r", "t"], ["a", "s", "t"], ["r", "s", "t"], ["a", "r", "s", "t"]]
+    end
   end
 end
