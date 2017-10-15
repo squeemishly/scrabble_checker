@@ -44,5 +44,16 @@ RSpec.describe AnagramicaService do
         expect(words_list["best"]).to eq ['no', 'on']
       end
     end
+
+    it 'returns a list of 4 letter words for 4 tiles' do
+      VCR.use_cassette 'anagramica_best_4_letters' do
+        words = ags.best('note')
+        words_list = JSON.parse(words.body)
+        expect(words_list).to be_a Hash
+        expect(words_list["best"]).to be_a Array
+        expect(words_list["best"].count).to eq 2
+        expect(words_list["best"]).to eq ['note', 'tone']
+      end
+    end
   end
 end
