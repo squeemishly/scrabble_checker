@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   resources :search, only: [:index]
+  resources :tiles, only: [:index]
+  resources :finder, only: [:index]
 end
