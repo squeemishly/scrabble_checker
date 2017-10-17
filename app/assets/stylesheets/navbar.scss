@@ -7,10 +7,11 @@ nav {
   display: flex;
   align-items: center;
 
-  .search-prompt {
-    padding-right: 10px;
-    color: $text-color;
-    font-weight: bold;
-    font-size: 1.5em;
+  ul {
+    
+    li {
+      text-decoration: none;
+      color: $text-color;
+    }
   }
 }
